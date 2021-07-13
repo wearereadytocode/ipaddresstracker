@@ -10,7 +10,7 @@ function Home() {
     const [,setviewport ] = useContext(ViewPortContext)
     const [input, setinput] = useState("")
     useEffect(() => {
-        axios.get('http://api.ipstack.com/check?access_key=5e1bd0eb56486cc5384b47085e5659de').then((data)=>{
+        axios.get('https://api.ipstack.com/check?access_key=5e1bd0eb56486cc5384b47085e5659de').then((data)=>{
             console.log(data.data.latitude);
             console.log(data.data.longitude);
             setdetails({
@@ -37,7 +37,7 @@ function Home() {
             city:"Loading..",
             postalcode:"Loading.."
         });
-        axios.get(`http://api.ipstack.com/${input}?access_key=5e1bd0eb56486cc5384b47085e5659de`).then((data)=>{
+        axios.get(`https://api.ipstack.com/${input}?access_key=5e1bd0eb56486cc5384b47085e5659de`).then((data)=>{
             console.log(data.data.latitude);
             console.log(data.data.longitude);
             setdetails({
