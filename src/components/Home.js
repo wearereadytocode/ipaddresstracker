@@ -3,21 +3,21 @@ import React, { useContext, useEffect, useState } from 'react'
 import { DetailsContext } from '../contexts/DetailsContext';
 import { ViewPortContext } from '../contexts/ViewPortContext';
 import Map from './Map'
-
+import {apikey} from './key'
 
 function Home() {
     const [details,setdetails] = useContext(DetailsContext)
     const [,setviewport ] = useContext(ViewPortContext)
     const [input, setinput] = useState("")
     useEffect(() => {
-        axios.get('http://api.ipstack.com/check?access_key=5e1bd0eb56486cc5384b47085e5659de').then((data)=>{
+        axios.get(`https://api.ipfind.com/me?auth=${apikey}`).then((data)=>{
             console.log(data.data.latitude);
             console.log(data.data.longitude);
             setdetails({
-                ip:data.data.ip,
-                location:data.data.city,
-                city:data.data.location.capital,
-                postalcode:data.data.zip
+                ip:data.data.ip_address,
+                location:data.data.county,
+                city:data.data.city,
+                postalcode:data.data.postal_code
             });
             setviewport({
                 latitude: data.data.latitude,
@@ -37,14 +37,14 @@ function Home() {
             city:"Loading..",
             postalcode:"Loading.."
         });
-        axios.get(`http://api.ipstack.com/${input}?access_key=5e1bd0eb56486cc5384b47085e5659de`).then((data)=>{
+        axios.get(`https://api.ipfind.com/?auth=${apikey}&ip=${input}`).then((data)=>{
             console.log(data.data.latitude);
             console.log(data.data.longitude);
             setdetails({
-                ip:data.data.ip,
-                location:data.data.city,
-                city:data.data.location.capital,
-                postalcode:data.data.zip
+                ip:data.data.ip_address,
+                location:data.data.county,
+                city:data.data.city,
+                postalcode:data.data.postal_code
             });
             setviewport({
                 latitude: data.data.latitude,
