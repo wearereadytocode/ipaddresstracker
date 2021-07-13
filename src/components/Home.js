@@ -1,24 +1,14 @@
-import { Fab, makeStyles } from '@material-ui/core'
-import { AddCircleOutlined, ArrowUpward } from '@material-ui/icons'
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { DetailsContext } from '../contexts/DetailsContext';
 import { ViewPortContext } from '../contexts/ViewPortContext';
 import Map from './Map'
 
-const useStyles = makeStyles((theme) => ({
-    margin: {
-      margin: theme.spacing(2),
-    },
-    extendedIcon: {
-      marginRight: theme.spacing(2),
-    },
-  }));
+
 function Home() {
     const [details,setdetails] = useContext(DetailsContext)
     const [,setviewport ] = useContext(ViewPortContext)
     const [input, setinput] = useState("")
-    const classes = useStyles();
     useEffect(() => {
         axios.get('http://api.ipstack.com/check?access_key=5e1bd0eb56486cc5384b47085e5659de').then((data)=>{
             console.log(data.data.latitude);
@@ -39,7 +29,7 @@ function Home() {
         }).catch(err=>{
             console.log(err);
         })
-    }, [])
+    }, [setdetails,setviewport])
     const findByIp = () =>{
         setdetails({
             ip:"Loading..",

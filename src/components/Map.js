@@ -1,13 +1,10 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useContext } from 'react'
 import ReactMapGL ,{Marker} from 'react-map-gl'
-import { DetailsContext } from '../contexts/DetailsContext'
 import { ViewPortContext } from '../contexts/ViewPortContext'
 
 function Map() {
-    const [,setdetails] = useContext(DetailsContext)
-    const [viewport,setviewport ] = useContext(ViewPortContext)
+    const [viewport, ] = useContext(ViewPortContext)
 
 
     return (
